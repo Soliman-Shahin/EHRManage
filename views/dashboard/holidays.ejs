@@ -1,0 +1,222 @@
+<%- include('../partials/header') -%>
+    <%- include('../dashboard/nav') -%>
+
+        <% if (user) { %>
+            <!--Hoilydays-->
+            <div class="container-fluid">
+                <div class="row login">
+                    <div class="col-md-7 offset-md-5">
+                        <header>
+                            <div class="card" style="width: 210px; height: 210px; border:solid gray 10px; border-radius: 10px 10px 0 0;">
+                                <% company.forEach(function(company) { %>
+                                    <img width="100%" height="100%" id="company-img" src="<%= '/logo/' + company.companyName + '.png'%>" class="card-img-top" alt="companyLogo">
+                                    <%})%>
+                            </div>
+                        </header>
+                    </div>
+                    <div class="col-md-3 ml-3 mb-2">
+                        <a href="#" class="btn btn-outline-success" data-toggle="modal" data-target="#addHolidayModal">Add Holiday</a>
+                    </div>
+                </div>
+                <% if (holiday==''){ %>
+                    <div class="col-md-8 offset-md-2">
+                        <div class="col form-adding">
+                            <section class="ftco-section bg-light ftco-bread">
+                                <div class="flex-nowrap">
+                                    <div class="alert alert-danger" role="alert" style="height: 8vmin;">
+                                        <h3 style="float: left;"><span>You don't have Data in database.  </span></h3>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <% } else{ %>
+                        <div class="col-md-12">
+                            <!--  Holiydays Tables Card-->
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <i class="fa fa-table"></i> Holiydays Table</div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Employee ID</th>
+                                                    <th>First name</th>
+                                                    <th>Last name</th>
+                                                    <th>Holiyday Date</th>
+                                                    <th>Remaining Days</th>
+                                                    <th>Options</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% holiday.forEach(function(holiday) { %>
+                                                    <tr>
+                                                        <td>
+                                                            <%= holiday.empNo %>
+                                                        </td>
+                                                        <td>
+                                                            <%= holiday.empFName %>
+                                                        </td>
+                                                        <td>
+                                                            <%= holiday.empLName %>
+                                                        </td>
+                                                        <td>
+                                                            <%= holiday.holiDate.toDateString() %>
+                                                        </td>
+                                                        <td>
+                                                            <%= holiday.remainingDays %>
+                                                        </td>
+                                                        <th>
+                                                            <a href="#" class="btn btn-primary" data-target="#editHolidayModal-<%= holiday.id%>" data-toggle="modal"><i class="fa fa-fw fa-edit"></i></a>
+                                                            <a href="#" class="btn btn-danger" data-target="#delHolidayModal-<%= holiday.id %>" data-toggle="modal"><i class="fa fa-fw fa-remove"></i></a>
+                                                            <!-- Edit holiday Modal -->
+                                                            <div class="modal fade" id="editHolidayModal-<%= holiday.id%>" tabindex="-1" role="dialog" aria-labelledby="editHolidayModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog modal-lg" role="document">
+                                                                    <div class="modal-content border-0">
+                                                                        <div class="modal-header bg-dark text-success">
+                                                                            <h5 class="modal-title" id="holidayModalTitle">Edit Holiday</h5>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span class="text-light" aria-hidden="true">&times;</span>
+                                          </button>
+                                                                        </div>
+                                                                        <div class="modal-body bg-light">
+                                                                            <form id="holidayForm" method="POST" action="<%='/company/'+holiday.id+'/updateHoliday'%>">
+                                                                                <div class="table-responsive">
+                                                                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                                                        <thead>
+                                                                                            <tr>
+                                                                                                <th>Employee ID</th>
+                                                                                                <th>First name</th>
+                                                                                                <th>Last name</th>
+                                                                                                <th>Holiyday Date</th>
+                                                                                                <th>Remaining Days</th>
+                                                                                            </tr>
+                                                                                        </thead>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <%= holiday.empNo %>
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <%= holiday.empFName %>
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <%= holiday.empLName %>
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <input type="date" name="holiDate" id="holiDate">
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <input type="number" name="remainingDays" id="remainingDays" value="<%= holiday.remainingDays %>">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </div>
+                                                                        </div>
+                                                                        <div class="modal-footer bg-dark justify-content-lg-start">
+                                                                            <button type="submit" class="btn btn-success"> Save</button>
+                                                                        </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- Delete Holiday Modal -->
+                                                            <div class="modal fade top" id="delHolidayModal-<%= holiday.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog modal-full-height modal-top" role="document">
+                                                                    <div class="modal-content border-0">
+                                                                        <div class="modal-header bg-danger text-light">
+                                                                            <h4 class="modal-title w-100" id="myModalLabel">Delete Holiday</h4>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span class="text-light" aria-hidden="true">&times;</span>
+                                              </button>
+                                                                        </div>
+                                                                        <div class="modal-body bg-light">
+                                                                            <form action="<%= '/company/'+ holiday.id + '/deleteHoliday'%>" method="POST">
+                                                                                <h3>Are you ready to delete 'Holiday'?</h3>
+                                                                        </div>
+                                                                        <div class="modal-footer justify-content-center bg-light">
+                                                                            <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+                                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </th>
+                                                    </tr>
+                                                    <% }); %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            </div>
+            <% } %>
+                </div>
+
+                <!-- Add holiday Modal -->
+                <div class="modal fade" id="addHolidayModal" tabindex="-1" role="dialog" aria-labelledby="holidayModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content border-0">
+                            <div class="modal-header bg-dark text-success">
+                                <h5 class="modal-title" id="holidayModalTitle">Add Holiday</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span class="text-light" aria-hidden="true">&times;</span>
+                                          </button>
+                            </div>
+                            <div class="modal-body bg-light">
+                                <form id="holidayForm" method="POST" action="/company/createHoliday">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Employee ID</th>
+                                                    <th>First name</th>
+                                                    <th>Last name</th>
+                                                    <th>Holiyday Date</th>
+                                                    <th>Remaining Days</th>
+                                                </tr>
+                                            </thead>
+                                            <tr>
+                                                <td>
+                                                    <select name="empNo" id="empNo">
+                                                    <% emps.forEach(function(emps) { %> <option value="<%= emps.empNo%>"><%= emps.empNo%></option><% }); %>
+                                                   </select>
+                                                </td>
+                                                <td>
+                                                    <select name="empFName" id="empFName">
+                                                    <% emps.forEach(function(emps) { %> <option value="<%= emps.empFName%>"><%= emps.empFName%></option><% }); %>
+                                                   </select>
+                                                </td>
+                                                <td>
+                                                    <select name="empLName" id="empLName">
+                                                    <% emps.forEach(function(emps) { %> <option value="<%= emps.empLName%>"><%= emps.empLName%></option><% }); %>
+                                                   </select>
+                                                </td>
+                                                <td>
+                                                    <input type="date" name="holiDate" id="holiDate">
+                                                </td>
+                                                <td>
+                                                    <input type="number" name="remainingDays" id="remainingDays">
+                                                </td>
+                                            </tr>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                            </div>
+                            <div class="modal-footer bg-dark justify-content-lg-start">
+                                <button type="submit" class="btn btn-success"> Save</button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+                <%}  %>
+
+                    <%- include('../partials/footer') -%>

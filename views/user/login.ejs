@@ -1,0 +1,35 @@
+<%- include('../partials/header') -%>
+    <%- include('../partials/navbar') -%>
+
+
+        <div class="container login-box">
+            <div class="row">
+                <div class="col-md-9 offset-md-2">
+                    <div id="successMessage" class="alert danger" style="position: absolute; right: 0px;">
+                        <strong><%- include('../partials/flashMessages') -%></strong>
+                    </div>
+                    <h1 class="display-4"><i class="fa fa-fw fa-user-circle-o fa-2x"></i> Login </i>
+                    </h1>
+                    <form action="/users/login" method="post">
+                        <div class="form-group text-box">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                            <input type="text" name="email" id="email" class="form-control" placeholder="Email Address">
+                        </div>
+                        <div class="form-group text-box">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                            <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+                        </div>
+                        <div class="form-row text-center justify-content-center">
+                            <div class="col-md-2">
+                                <button type="submit" class="btn" style="background-color: darkcyan; width: 12vmin;">Login</button>
+                            </div>
+                            <div class="col-md-2">
+                                <a class="btn btn-outline-secondary" style="width: 12vmin;" href="/users/signup">Sign Up</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <%- include('../partials/footer') -%>
