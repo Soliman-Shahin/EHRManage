@@ -115,7 +115,7 @@ app.post('/send', (req, res) => {
 });
 
 // listen to port 
-let port = 1212;
+let port = process.env.PORT || 1212;
 app.listen(port, () => {
-    console.log(' app is wokring on port :' + port)
+    console.log(' app is working on port :' + port)
 })
