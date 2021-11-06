@@ -41,8 +41,8 @@ passport.use(new GoogleStrategy({
 
 // sign up with facebook
 passport.use(new FacebookStrategy({
-        clientID: '369896824887505',
-        clientSecret: '1f9de6cfe2b9a0b5e6ad3d82d7e43359',
+        clientID: '588485975743399',
+        clientSecret: '88e07a5bcb2cd8f2129de1c2978a45b6',
         callbackURL: "/users/auth/facebook/callback",
         profileFields: ['id', 'displayName', 'email', 'picture.type(large)']
     },
