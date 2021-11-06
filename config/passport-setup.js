@@ -101,7 +101,6 @@ passport.use('local.signup', new localStrategy({
             if (user) {
                 return done(null, false, req.flash('error', 'Email already used'))
             }
-
             if (!user) {
                 //create user
                 let newUser = new User()
