@@ -1,0 +1,404 @@
+<%- include('../partials/header') -%>
+    <%- include('../dashboard/nav') -%>
+
+
+        <% if (user) { %>
+            <!--Employee-->
+            <div class="container-fluid">
+                <div class="row login">
+                    <div class="col-md-7 offset-md-5">
+                        <header>
+                            <% company.forEach(function(company) { %>
+                                <div class="card" style="width: 210px; height: 210px; border:solid gray 10px; border-radius: 10px 10px 0 0;">
+                                    <img width="100%" height="100%" id="company-img" src="<%= '/logo/' + company.companyName + '.png'%>" class="card-img-top" alt="companyLogo">
+                                    <% }) %>
+                                </div>
+                        </header>
+                    </div>
+                    <div class="col-md-3 offset-2 mt-4 mb-4">
+                        <a href="#" class="btn btn-outline-success" data-toggle="modal" data-target="#addEmployeeModal">
+                            <i class="fa fa-fw fa-plus-square-o"></i> Add Employee
+                        </a>
+                    </div>
+                </div>
+                <% if (emps==''){ %>
+                    <div class="col-md-8 offset-md-2">
+                        <hr>
+                        <div class="col form-adding">
+                            <section class="ftco-section bg-light ftco-bread">
+                                <div class="flex-nowrap">
+                                    <div class="alert alert-danger" role="alert" style="height: 8vmin;">
+                                        <h3 style="float: left;"><span>You don't have Employees in database.  </span></h3>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <% } else{ %>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!--  Employees Tables Card-->
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        <i class="fa fa-table"></i> Employees Table</div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Employee ID</th>
+                                                        <th>Picture</th>
+                                                        <th>First name</th>
+                                                        <th>Last name</th>
+                                                        <th>Email</th>
+                                                        <th>Address</th>
+                                                        <th>Birthday</th>
+                                                        <th>Phone</th>
+                                                        <th>Employee role</th>
+                                                        <th>Gender</th>
+                                                        <th>Bank A/c number</th>
+                                                        <th>Nationality</th>
+                                                        <th>National ID</th>
+                                                        <th>College degree</th>
+                                                        <th>Relationship</th>
+                                                        <th>Salary</th>
+                                                        <th>Holidays</th>
+                                                        <th>Department</th>
+                                                        <th>Contract type</th>
+                                                        <th>Employee type</th>
+                                                        <th>Options</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <% emps.forEach(function(emps) { %>
+                                                        <tr>
+                                                            <td>
+                                                                <%= emps.id%>
+                                                            </td>
+                                                            <td>
+                                                                <img src="<%= '/employees/' + emps.id + '.png'%>" width="70vmin" height="70vmin">
+                                                            </td>
+                                                            <td>
+                                                                <%= emps.empFName%>
+                                                            </td>
+                                                            <td>
+                                                                <%= emps.empLName%>
+                                                            </td>
+                                                            <td>
+                                                                <%= emps.empEmail%>
+                                                            </td>
+                                                            <td>
+                                                                <%= emps.empAddress%>
+                                                            </td>
+                                                            <td>
+                                                                <%= emps.empBDay%>
+                                                            </td>
+                                                            <td>
+                                                                <%= emps.empPhone%>
+                                                            </td>
+                                                            <td>
+                                                                <%= emps.empRole%>
+                                                            </td>
+                                                            <td>
+                                                                <%= emps.empGender%>
+                                                            </td>
+                                                            <td>
+                                                                <%= emps.empBankNo%>
+                                                            </td>
+                                                            <td>
+                                                                <%= emps.empNationality%>
+                                                            </td>
+                                                            <td>
+                                                                <%= emps.empNationalId%>
+                                                            </td>
+                                                            <td>
+                                                                <%= emps.empCollegeDegree%>
+                                                            </td>
+                                                            <td>
+                                                                <%= emps.empRelationship%>
+                                                            </td>
+                                                            <td>
+                                                                <%= emps.empSalary%>
+                                                            </td>
+                                                            <td>
+                                                                <%= emps.empHolidays%>
+                                                            </td>
+                                                            <td>
+                                                                <%= emps.empDepartment%>
+                                                            </td>
+                                                            <td>
+                                                                <%= emps.contractType%>
+                                                            </td>
+                                                            <td>
+                                                                <%= emps.empType%>
+                                                            </td>
+                                                            <td>
+                                                                <a href="#" class="btn btn-primary" data-target="#editEmployeeModal-<%= emps.id%>" data-toggle="modal"><i class="fa fa-fw fa-edit"></i></a>
+                                                                <a href="#" class="btn btn-danger" data-target="#delEmployeeModal-<%= emps.id %>" data-toggle="modal"><i class="fa fa-fw fa-user-times"></i></a>
+                                                            </td>
+                                                        </tr>
+                                                        <!-- Edit employee Modal -->
+                                                        <div id="editEmployeeModal-<%= emps.id%>" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog">
+                                                            <div class="modal-dialog modal-lg" role="document">
+                                                                <div class="modal-content border-0">
+                                                                    <div class="modal-header bg-dark text-success">
+                                                                        <h5 class="modal-title">Edit Employee</h5>
+                                                                        <button type="button" class="close text-secondary" data-dismiss="modal" aria-label="Close">
+                                                               <span class="text-light" aria-hidden="true">&times;</span>
+                                                            </button>
+                                                                    </div>
+                                                                    <div class="modal-body bg-light text-secondary border-0">
+                                                                        <form method="POST" action="<%='/company/'+emps.id + '/updateEmployee'%>" enctype="multipart/form-data">
+                                                                            <div class="col-md-10 offset-md-1">
+                                                                                <div class="form-group">
+                                                                                    <div class="form-row">
+                                                                                        <div class="col-md-6">
+                                                                                            <div class="circle eimg">
+                                                                                                <!-- User Profile Image -->
+                                                                                                <img id="img" class="profile-pic" src="<%= '/employees/'+ emps.empNo +'.png' %>">
+                                                                                                <!-- Default Image -->
+                                                                                            </div>
+                                                                                            <div class="p-image">
+                                                                                                <label class="upload-button"><i class="upload-button fa fa-camera fa-3x"></i>
+                                                                                                        <input class="file-upload" hidden="" type="file" name="imageFile" id="imageFile" accept="image/*" onchange="readURL(this)" />
+                                                                                                    </label>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-md-6">
+                                                                                            <input class="form-control bg-transparent border-top-0 border-right-0 mt-3" type="text" id="empFName" name="empFName" value="<%= emps.empFName%>">
+                                                                                            <input class="form-control bg-transparent border-top-0 border-right-0 mt-3" type="text" id="empLName" name="empLName" value="<%= emps.empLName%>">
+                                                                                            <input class="form-control bg-transparent border-top-0 border-right-0 mt-3" type="email" id="empEmail" name="empEmail" value="<%= emps.empEmail%>">
+                                                                                            <input class="form-control bg-transparent border-top-0 border-right-0 mt-3" type="text" id="empAddress" name="empAddress" value="<%= emps.empAddress%>">
+                                                                                        </div>
+                                                                                        <div class="col-md-6" style="margin-top: 2vmin;">
+                                                                                            <input class="form-control bg-transparent border-top-0 border-right-0" type="date" id="empBDay" name="empBDay" max="2000-12-31" min="1960-01-01">
+                                                                                        </div>
+                                                                                        <div class="col-md-6" style="margin-top: 2vmin;">
+                                                                                            <input class="form-control bg-transparent border-top-0 border-right-0" type="text" id="empPhone" name="empPhone" value="<%= emps.empPhone%>">
+                                                                                        </div>
+                                                                                        <div class="col-md-6" style="margin-top: 2vmin;">
+                                                                                            <div class="btn-group" data-toggle="buttons">
+                                                                                                <label class="btn btn-danger btn-rounded active form-check-label" style="width: 150px;">
+                                                                                <input class="form-check-input" id="empMGender" type="radio" name="empGender" value="M" checked autocomplete="off"> Male
+                                                                                <i class="fa fa-male ml-5"></i>
+                                                                                </label>
+                                                                                                <label class="btn btn-info btn-rounded form-check-label" style="width:150px">
+                                                                                <input class="form-check-input" id="empFGender" type="radio" name="empGender" value="F" autocomplete="off"> Female
+                                                                            <i class="fa fa-female ml-5"></i>
+                                                                                </label>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-md-6" style="margin-top: 2vmin;">
+                                                                                            <input class="form-control bg-transparent border-top-0 border-right-0" type="text" id="empRole" name="empRole" value="<%= emps.empRole%>">
+                                                                                        </div>
+                                                                                        <div class="col-md-6" style="margin-top: 2vmin;">
+                                                                                            <input class="form-control bg-transparent border-top-0 border-right-0" type="text" id="empBankNo" name="empBankNo" value="<%= emps.empBankNo%>">
+                                                                                        </div>
+                                                                                        <div class="col-md-6" style="margin-top: 2vmin;">
+                                                                                            <input class="form-control bg-transparent border-top-0 border-right-0" type="text" id="empNationality" name="empNationality" value="<%= emps.empNationality%>">
+                                                                                        </div>
+                                                                                        <div class="col-md-6" style="margin-top: 2vmin;">
+                                                                                            <input class="form-control bg-transparent border-top-0 border-right-0" type="text" id="empNationalId" name="empNationalId" value="<%= emps.empNationalId%>">
+                                                                                        </div>
+                                                                                        <div class="col-md-6" style="margin-top: 2vmin;">
+                                                                                            <input class="form-control bg-transparent border-top-0 border-right-0" type="text" id="empCollegeDegree" name="empCollegeDegree" value="<%= emps.empCollegeDegree%>">
+                                                                                        </div>
+                                                                                        <div class="col-md-6" style="margin-top: 2vmin;">
+                                                                                            <input class="form-control bg-transparent border-top-0 border-right-0" type="text" id="empRelationship" name="empRelationship" value="<%= emps.empRelationship%>">
+                                                                                        </div>
+                                                                                        <div class="col-md-6" style="margin-top: 2vmin;">
+                                                                                            <input class="form-control bg-transparent border-top-0 border-right-0" type="text" id="empSalary" name="empSalary" value="<%= emps.empSalary%>">
+                                                                                        </div>
+                                                                                        <div class="col-md-6" style="margin-top: 2vmin;">
+                                                                                            <input class="form-control bg-transparent border-top-0 border-right-0" type="text" id="empHolidays" name="empHolidays" value="<%= emps.empHolidays%>">
+                                                                                        </div>
+                                                                                        <div class="col-md-6" style="margin-top: 2vmin;">
+                                                                                            <select name="empDepartment" id="empDepartment" class="form-control bg-transparent border-top-0 border-right-0">
+                                                                                                        <% company.forEach(function(company) { %>
+
+                                                                                                            <% let counter = 0;
+                                                                                                       for (var j = 0; j < company.department.length; j++) {
+                                                                                                       if (company.department.id !== '') counter++;
+                                                                                                    %>
+                                                                                      <option value="<%= company.department[j].deptName %>"><%= company.department[j].deptName %></option><% } %>
+                                                                                                    <%})%>
+                                                                                    </select>
+                                                                                        </div>
+                                                                                        <div class="col-md-6" style="margin-top: 2vmin;">
+                                                                                            <select name="contractType" id="contractType" class="form-control bg-transparent border-top-0 border-right-0">
+                                                                                          <option value="Annual">Annual</option>
+                                                                                          <option value="6 months">6 Months</option>
+                                                                                        </select>
+                                                                                        </div>
+                                                                                        <% if (policies){ %>
+                                                                                            <div class="col-md-6" style="margin-top: 2vmin;">
+                                                                                                <select name="empType" id="emptype" class="form-control bg-transparent border-top-0 border-right-0"><% policies.forEach((policies) =>{%>
+                                                                                        <option value="<%= policies.policyName %>"><%= policies.policyName %></option> <%})%>
+                                                                                       </select>
+                                                                                            </div>
+                                                                                            <% } %>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                    </div>
+                                                                    <div class="modal-footer bg-dark border-0 justify-content-lg-start">
+                                                                        <button type="submit" class="btn btn-success"><i class="fa fa-fw fa-save"></i> Save</button>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Delete Employee Modal -->
+                                                        <div class="modal fade top" id="delEmployeeModal-<%= emps.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog modal-full-height modal-top" role="document">
+                                                                <div class="modal-content border-0">
+                                                                    <div class="modal-header bg-danger text-light">
+                                                                        <h4 class="modal-title w-100" id="myModalLabel">Delete Employee</h4>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span class="text-light" aria-hidden="true">&times;</span>
+                                  </button>
+                                                                    </div>
+                                                                    <div class="modal-body bg-light">
+                                                                        <form action="<%= '/company/'+ emps.id + '/deleteEmployee'%>" method="POST">
+                                                                            <h3>Are you ready to delete 'Employee'?</h3>
+                                                                    </div>
+                                                                    <div class="modal-footer justify-content-center bg-light">
+                                                                        <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+                                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <% }); %>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+            </div>
+            </div>
+
+
+            <!-- Add employee Modal-->
+            <div id="addEmployeeModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-full-height modal-lg" role="document">
+                    <div class="modal-content border-0">
+                        <div class="modal-header bg-dark text-success">
+                            <h5 class="modal-title">Add Employee</h5>
+                            <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                        </div>
+                        <div class="modal-body bg-light text-secondary">
+                            <form method="POST" action="/company/createEmployee" enctype="multipart/form-data">
+                                <div class="col-md-10 offset-md-1">
+                                    <div class="form-group">
+                                        <div class="form-row">
+                                            <div class="col-md-6">
+                                                <div class="circle eimg">
+                                                    <!-- User Profile Image -->
+                                                    <img id="img" class="profile-pic" src="/images/profile.png">
+                                                    <!-- Default Image -->
+                                                </div>
+                                                <div class="p-image">
+                                                    <label class="upload-button"><i class="upload-button fa fa-camera fa-3x"></i>
+                                                        <input class="file-upload" hidden="" type="file" name="imageFile" id="imageFile" accept="image/*" onchange="readURL(this)" required/>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input class="form-control bg-transparent border-top-0 border-right-0 bg-transparent border-top-0 border-right-0 mt-3" type="text" id="empFName" name="empFName" placeholder="First name" title="Must enter employee first name" required>
+                                                <input class="form-control bg-transparent border-top-0 border-right-0 bg-transparent border-top-0 border-right-0 mt-3" type="text" id="empLName" name="empLName" placeholder="Last name" title="Must enter employee last name" required>
+                                                <input class="form-control bg-transparent border-top-0 border-right-0 bg-transparent border-top-0 border-right-0 mt-3" type="email" id="empEmail" name="empEmail" placeholder="Email" required>
+                                                <input class="form-control bg-transparent border-top-0 border-right-0 bg-transparent border-top-0 border-right-0 mt-3" type="text" id="empAddress" name="empAddress" placeholder="Address">
+                                            </div>
+                                            <div class="col-md-6" style="margin-top: 2vmin;">
+                                                <input class="form-control bg-transparent border-top-0 border-right-0 bg-transparent border-top-0 border-right-0" type="date" id="empBDay" name="empBDay" max="2000-12-31" min="1960-01-01">
+                                            </div>
+                                            <div class="col-md-6" style="margin-top: 2vmin;">
+                                                <input class="form-control bg-transparent border-top-0 border-right-0 bg-transparent border-top-0 border-right-0" type="text" id="empPhone" name="empPhone" placeholder="Phone">
+                                            </div>
+                                            <div class="col-md-6" style="margin-top: 2vmin;">
+                                                <div class="btn-group" data-toggle="buttons">
+                                                    <label class="btn btn-danger btn-rounded active form-check-label" style="width: 150px;">
+                                                <input class="form-check-input" id="empMGender" type="radio" name="empGender" value="M" checked autocomplete="off"> Male
+                                                <i class="fa fa-male ml-5"></i>
+                                                </label>
+                                                    <label class="btn btn-info btn-rounded form-check-label" style="width:150px">
+                                                <input class="form-check-input" id="empFGender" type="radio" name="empGender" value="F" autocomplete="off"> Female
+                                            <i class="fa fa-female ml-5"></i>
+                                                </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6" style="margin-top: 2vmin;">
+                                                <input class="form-control bg-transparent border-top-0 border-right-0 bg-transparent border-top-0 border-right-0" type="text" id="empRole" name="empRole" placeholder="Employee role">
+                                            </div>
+                                            <div class="col-md-6" style="margin-top: 2vmin;">
+                                                <input class="form-control bg-transparent border-top-0 border-right-0 bg-transparent border-top-0 border-right-0" type="text" id="empBankNo" name="empBankNo" placeholder="Banck A/c Number">
+                                            </div>
+                                            <div class="col-md-6" style="margin-top: 2vmin;">
+                                                <input class="form-control bg-transparent border-top-0 border-right-0" type="text" id="empNationality" name="empNationality" placeholder="Nationality">
+                                            </div>
+                                            <div class="col-md-6" style="margin-top: 2vmin;">
+                                                <input class="form-control bg-transparent border-top-0 border-right-0" type="text" id="empNationalId" name="empNationalId" placeholder="National ID">
+                                            </div>
+                                            <div class="col-md-6" style="margin-top: 2vmin;">
+                                                <input class="form-control bg-transparent border-top-0 border-right-0" type="text" id="empCollegeDegree" name="empCollegeDegree" placeholder="College degree">
+                                            </div>
+                                            <div class="col-md-6" style="margin-top: 2vmin;">
+                                                <input class="form-control bg-transparent border-top-0 border-right-0" type="text" id="empRelationship" name="empRelationship" placeholder="Relationship">
+                                            </div>
+                                            <div class="col-md-6" style="margin-top: 2vmin;">
+                                                <input class="form-control bg-transparent border-top-0 border-right-0" type="text" id="empSalary" name="empSalary" placeholder="Salary">
+                                            </div>
+                                            <div class="col-md-6" style="margin-top: 2vmin;">
+                                                <input class="form-control bg-transparent border-top-0 border-right-0" type="text" id="empHolidays" name="empHolidays" placeholder="Holidays">
+                                            </div>
+                                            <div class="col-md-6" style="margin-top: 2vmin;">
+                                                <select name="empDepartment" id="empDepartment" class="form-control bg-transparent border-top-0 border-right-0">
+                                                            <% company.forEach(function(company) { %>
+
+                                                                <% let counter = 0;
+                                                           for (var j = 0; j < company.department.length; j++) {
+                                                           if (company.department.id !== '') counter++;
+                                                        %>
+                                                <option value="<%= company.department[j].deptName %>"><%= company.department[j].deptName %></option>
+                                            <% } %>
+                                                        <%})%>
+                                                    </select>
+                                            </div>
+                                            <div class="col-md-6" style="margin-top: 2vmin;">
+                                                <select name="contractType" id="contractType" class="form-control bg-transparent border-top-0 border-right-0">
+                                                <option value="Annual">Annual</option>
+                                                <option value="6 months">6 Months</option>
+                                            </select>
+                                            </div>
+                                            <% if (policies){ %>
+                                                <div class="col-md-6" style="margin-top: 2vmin;">
+                                                    <select name="empType" id="emptype" class="form-control bg-transparent border-top-0 border-right-0">
+                                                        <option selected>Policy</option>
+                                                        <% policies.forEach((policies) =>{%>
+                                                <option value="<%= policies.policyName%>"><%= policies.policyName%></option>
+                                                <%})%>
+                                            </select>
+                                                </div>
+                                                <% } %>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="modal-footer bg-dark border-0 justify-content-lg-start">
+                            <button type="submit" class="btn btn-success"><i class="fa fa-fw fa-save"></i> Save</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <%}  %>
+
+                <%- include('../partials/footer') -%>

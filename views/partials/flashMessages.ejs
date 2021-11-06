@@ -1,0 +1,43 @@
+<% if (locals.errors) {%>
+    <% errors.forEach((err)=> {%>
+        <div class="alert alert-danger" id="successMessage" style="position: absolute; right: 3px;">
+            <%= err.msg%>
+        </div>
+        <%})%>
+
+            <%}%>
+
+
+                <% if (locals.message && message !="") {%>
+                    <div id="successMessage" role="alert" class="toast" style="position: absolute; right: 3px; z-index: 1;" aria-live="assertive" aria-atomic="true" data-autohide="false">
+                        <div class="toast-header bg-dark text-light p-2">
+                            <img class="rounded mr-2" width="20" height="20" src="/img/logo.png">
+                            <strong class="ml-1">EHRManage</strong>
+                            <small class="ml-5 mr-1 text-muted">just now</small>
+                        </div>
+                        <div class="toast-body bg-dark text-light p-2">
+                            <%= message%>
+                        </div>
+                    </div>
+                    <%}%>
+
+
+                        <% if (locals.error && error !="") {%>
+
+                            <div class="alert alert-danger" id="successMessage" style="position: absolute; right: 3px;">
+                                <%= error%>
+                            </div>
+                            <%}%>
+
+                                <% if (locals.success && success !="") {%>
+
+                                    <div class="toast bg-success text-light" role="alert" id="successMessage" style="position: absolute; right: 3px;" aria-live="assertive" aria-atomic="true" data-autohide="false">
+                                        <div class="toast-header pl-2">
+                                            <img class="rounded mr-2" width="20" height="20" src="/img/logo.png">
+                                            <small class="text-light">EHRManage</small>
+                                        </div>
+                                        <div class="toast-body pl-2 pr-2 pb-2">
+                                            <strong><%= success%></strong>
+                                        </div>
+                                    </div>
+                                    <%}%>

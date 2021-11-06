@@ -1,0 +1,108 @@
+body .main-container {
+    background-color: #fff;
+    height: calc(100% - 0px);
+    height: -webkit-calc(100% - 0px);
+    height: -moz-calc(100% - 0px);
+    position: relative;
+    z-index: 3;
+}
+
+body .wrapper {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+
+/*----------------
+Margin Top 
+----------------*/
+
+.iq-mt-90 {
+    margin-top: 90px;
+}
+
+
+/*---------------------------------------------------------------------
+                            Text Weight 
+-----------------------------------------------------------------------*/
+
+.iq-tw-8 {
+    font-weight: 800;
+}
+
+
+/*---------------------------------------------------------------------
+                          Background Color 
+-----------------------------------------------------------------------*/
+
+.purple-bg {
+    background: rgba(0, 198, 255, 1);
+    background: -moz-linear-gradient(left, rgba(0, 198, 255, 1) 0%, rgba(0, 114, 255, 1) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(0, 198, 255, 1)), color-stop(100%, rgba(0, 114, 255, 1)));
+    background: -webkit-linear-gradient(left, rgba(0, 198, 255, 1) 0%, rgba(0, 114, 255, 1) 100%);
+    background: -o-linear-gradient(left, rgba(0, 198, 255, 1) 0%, rgba(0, 114, 255, 1) 100%);
+    background: -ms-linear-gradient(left, rgba(0, 198, 255, 1) 0%, rgba(0, 114, 255, 1) 100%);
+    background: linear-gradient(to right, rgba(0, 198, 255, 1) 0%, rgba(0, 114, 255, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#00c6ff', endColorstr='#0072ff', GradientType=1);
+}
+
+
+/*---------------------------------------------------------------------
+                                 Home
+---------------------------------------------------------------------*/
+
+.iq-objects .iq-objects-01 {
+    position: absolute;
+    bottom: 15%;
+    left: 0;
+}
+
+.content-deta {
+    padding: 60px 40px 0 5px;
+}
+
+.content-deta h1 {
+    font-weight: 800;
+    color: #333333;
+    margin: 0px;
+    line-height: normal;
+    font-size: 54px;
+}
+
+.content-deta #typer {
+    height: 65px;
+    margin: 10px 0;
+}
+
+.content-deta h1.iq-font-purple {
+    color: #0072ff;
+}
+
+.iq-home {
+    margin-left: -200px;
+    height: 670px;
+    overflow: scroll;
+    overflow: auto;
+    padding: 0 20px;
+}
+
+.boder-img {
+    position: relative;
+    width: 87%;
+    -webkit-box-shadow: 4px 4px 15px 0px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 4px 4px 15px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 4px 4px 15px 0px rgba(0, 0, 0, 0.1);
+}
+
+.boder-img:before {
+    position: absolute;
+    content: "";
+    bottom: -30px;
+    right: -30px;
+    height: 100%;
+    width: 100%;
+    border: 15px solid #0072ff;
+    display: inline-block;
+    z-index: -2 !important;
+}

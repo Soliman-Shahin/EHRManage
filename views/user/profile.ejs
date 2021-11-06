@@ -1,0 +1,68 @@
+<%- include('../partials/header') -%>
+    <%- include('../dashboard/nav') -%>
+
+        <% if (user) { %>
+            <!-- Profile -->
+            <div class=" container-fluid">
+                <div class="row row-eq-height">
+                    <div class="col-md-3 purple-bg" style="margin-top: -6px;">
+                        <div class="iq-objects">
+                            <span class="iq-objects-01">
+                                    <img class="img-fluid" src="/img/01.png" alt="drive">
+                                </span>
+                        </div>
+                    </div>
+                    <div class="col-md-9 main-content align-self-center">
+                        <div id="boxscroll" class="iq-home">
+                            <div class="home-deta iq-mt-90">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="boder-img">
+                                            <form action="/users/uploadAvatar" method="POST" enctype="multipart/form-data">
+                                                <img id="userAvatar" src="<%='/images/' + user.avatar%>" class="img-fluid profile-pic" alt="#">
+                                                <label class="btn btn-outline-dark upload-button border-0" style="margin-top:-80px;"><i class="fa fa-fw fa-camera fa-3x text-light"></i>
+                                                <input id="avatar" class="file-upload" type="file" name="avatar" hidden="" accept="image/*" onchange="readURL(this)" required>
+                                               </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8 content-deta">
+                                        <h2 class="iq-tw-8">Hello, <span class="badge badge-secondary"><%= user.username%> </span></h2>
+                                        <h2 id="iq-tw-8">Email, <span class="badge badge-secondary"><%=user.email%> </span></h2>
+                                        <br> <button class="btn btn-success" type="submit"><i class="fa fa-fw fa-save"></i> Save Picture</button>
+                                        <a href="#" class="btn btn-danger" data-target="#delUserModal-<%= user.id %>" data-toggle="modal"><i class="fa fa-fw fa-user-times"></i> Delete User</a>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <!-- Delete User Modal -->
+            <div class="modal fade top" id="delUserModal-<%= user.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-full-height modal-top" role="document">
+                    <div class="modal-content border-0">
+                        <div class="modal-header bg-danger text-light">
+                            <h4 class="modal-title w-100" id="myModalLabel">Delete User</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span class="text-light" aria-hidden="true">&times;</span>
+                  </button>
+                        </div>
+                        <div class="modal-body bg-light">
+                            <form action="<%= '/users/'+ user.id + '/deleteUser'%>" method="POST">
+                                <h3>Are you ready to delete 'User'?</h3>
+                        </div>
+                        <div class="modal-footer justify-content-center bg-light">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <%}  %>
+
+                <%- include('../partials/footer') -%>

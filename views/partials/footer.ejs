@@ -1,0 +1,50 @@
+<% if (user) {%>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content border-0">
+                <div class="modal-header bg-dark text-info">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+<span class="text-light" aria-hidden="true">×</span>
+</button>
+                </div>
+                <div class="modal-body bg-light">If you have finished your work and ready to leave Select "Logout".</div>
+                <div class="modal-footer bg-dark">
+                    <a class="btn btn-primary" href="/users/logout">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%}  %>
+
+
+        <footer class="sticky-footer text-center">
+            <div class="container">
+                <div class="row">
+                    <small>Copyright © <strong>EHRManage</strong> 2020 by : <strong>Soliman Shahin</strong> </small>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#body">
+            <i class="fa fa-angle-up"></i>
+        </a>
+
+        <!-- Bootstrap core JavaScript-->
+        <script src="/vendor/jquery/jquery.min.js"></script>
+        <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Page level plugin JavaScript-->
+        <script src="/vendor/datatables/jquery.dataTables.js"></script>
+        <script src="/vendor/datatables/dataTables.bootstrap4.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="/js/sb-admin.min.js"></script>
+        <!-- Custom scripts for this page-->
+        <script src="/js/sb-admin-datatables.min.js"></script>
+
+        </body>
+
+        </html>

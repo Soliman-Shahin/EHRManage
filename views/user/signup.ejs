@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Soliman Shahin">
+    <title>
+        <%=title%>
+    </title>
+
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="/css/custom.css" type="text/css">
+    <!-- Custom style for icon-->
+    <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
+    <!-- Bootstrap core CSS-->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom fonts-->
+    <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="login" style="padding-top: 45px;">
+            <div class="container">
+                <h1>Sign Up</h1>
+                <form action="/users/signup" method="post">
+                    <input type="text" name="username" id="username" placeholder="UserName">
+                    <input type="email" name="email" id="email" placeholder="Email">
+                    <input type="password" name="password" id="password" placeholder="Password">
+                    <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password">
+                    <button type="submit">Sign Up</button>
+                </form>
+                <hr>
+                <p>Or Connect With</p>
+                <hr>
+                <ul>
+                    <li style="color: darkblue;">
+                        <a href="/users/auth/facebook">
+                            <i class="fa fa-facebook-f fa-2x"></i>
+                        </a>
+                    </li>
+                    <li style="color: red;">
+                        <a href="/users/auth/google">
+                            <i class="fa fa-google fa-2x"></i>
+                        </a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="register">
+            <div class="container">
+                <a href="/home">
+                    <img src="/img/logo.png" alt="logo" width="50%" height="50%">
+                </a>
+                <h2>Hello,friend!</h2>
+                <p>If you have account</p>
+                <a class="btn" href="/users/login">Log in <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+</body>
+
+</html>

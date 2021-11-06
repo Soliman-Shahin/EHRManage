@@ -1,0 +1,471 @@
+/*------------------------------------------------ Style Home page -------------------------------------------------*/
+
+html {
+    background-color: #e9ecef;
+}
+
+body {
+    background-color: #e9ecef;
+}
+
+.underline {
+    background-color: #343a40;
+    width: 300px;
+    height: 5px;
+    max-width: 0 auto;
+    margin: 20px auto;
+}
+
+
+/* style login*/
+
+.login-box {
+    margin-top: 40vmin;
+    width: 120vmin;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: darkcyan;
+}
+
+.login-box h1 {
+    float: left;
+    font-size: 6.5vmin;
+    border-bottom: 0.8vmin solid slategrey;
+    margin-bottom: 7vmin;
+    padding: 2vmin;
+}
+
+.text-box {
+    width: 100%;
+    overflow: hidden;
+    font-size: 6vmin;
+    padding: 1.5vmin 0;
+    margin: 2vmin 0;
+    border-bottom: 0.1vmin solid slategrey;
+}
+
+.text-box i {
+    width: 5vmin;
+    float: left;
+    text-align: center;
+}
+
+.text-box input {
+    border: none;
+    outline: none;
+    background: none;
+    color: darkcyan;
+    font-size: 3vmin;
+    width: 80%;
+    float: left;
+    margin: 0 1vmin;
+}
+
+
+/* style for home content */
+
+#home-content {
+    background: #E55D87;
+    background: -webkit-linear-gradient(to right, #5FC3E4, #E55D87);
+    background: linear-gradient(to right, #5FC3E4, #E55D87);
+    width: 100%;
+    height: 750px;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.content {
+    top: 100px;
+    width: 100%;
+    height: 750px;
+    overflow: hidden;
+    position: relative;
+}
+
+.banner {
+    width: 100%;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+
+/* style home page navbar */
+
+#home-nav {
+    background: #E55D87;
+    background: -webkit-linear-gradient(to right, #5FC3E4, #E55D87);
+    background: linear-gradient(to right, #5FC3E4, #E55D87);
+    display: inline;
+    position: fixed;
+    padding: 3px 20px 0 20px;
+}
+
+
+/* style website logo in navbar */
+
+.navbar-brand img {
+    width: 100px;
+    height: 38px;
+    float: left;
+    border-radius: 15px;
+}
+
+
+/* style login,signup btn in navbar */
+
+.navbar-log {
+    border: hidden;
+    border-radius: 20px;
+    margin: 5px;
+    background-color: transparent;
+    float: right;
+    top: 0;
+    cursor: pointer;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+
+/* style and moving header text */
+
+.banner h4 {
+    text-decoration-style: none;
+    color: #ddd;
+    font-size: 50px;
+    font-weight: 600;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+    vertical-align: center;
+    animation-name: moveIn;
+    animation-duration: 4s;
+    animation-fill-mode: backwards;
+}
+
+
+/* style to change span text color */
+
+.sp {
+    color: #444;
+    text-transform: none;
+    font-variant: small-caps;
+}
+
+
+/* style and moving (p) in home page*/
+
+.home-item1,
+.home-item2,
+.home-item3 {
+    height: 60px;
+    color: white;
+    font-size: 40px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.home-item1 {
+    margin-top: 100px;
+    animation-name: moveToLift;
+    animation-duration: 1.5s;
+}
+
+.home-item2 {
+    animation-name: moveToRight;
+    animation-duration: 1.5s;
+}
+
+.home-item3 {
+    animation-name: moveToUp;
+    animation-duration: 1.5s;
+}
+
+
+/*style scroll btn (our services, about, contact us)*/
+
+.style2 {
+    color: #e9ecef;
+    margin-top: 50px;
+    padding: 10px 45px;
+    border: 1px solid #e9ecef;
+    border-radius: 20px;
+    animation-name: moveToS;
+    animation-duration: 4s;
+    animation-fill-mode: backwards;
+}
+
+.style2:hover {
+    color: black;
+    border: black solid 1px;
+}
+
+@keyframes moveToS {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes moveToLift {
+    from {
+        transform: translatex(300px);
+        opacity: 0;
+    }
+    to {
+        transform: translatex(0);
+        opacity: 1;
+    }
+}
+
+@keyframes moveToRight {
+    from {
+        transform: translatex(-300px);
+        opacity: 0;
+    }
+    to {
+        transform: translatex(0);
+        opacity: 1;
+    }
+}
+
+@keyframes moveToUp {
+    from {
+        transform: translatey(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translatey(0);
+        opacity: 1;
+    }
+}
+
+@keyframes moveIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* style for login,signup form icon */
+
+.icon {
+    text-align: center;
+    margin: 5px;
+    color: #5FC3E4;
+}
+
+
+/* -----------style services section---------*/
+
+.content-box {
+    padding: 50px 0 20px 0;
+}
+
+
+/* style our services title */
+
+.content-title h3 {
+    font-size: 30px;
+    font-weight: 700;
+    text-align: center;
+    margin: 50px 0 25px 0;
+}
+
+
+/* style underline the title */
+
+.content-underline {
+    background-color: #444;
+    width: 300px;
+    height: 5px;
+    max-width: 0 auto;
+    margin: auto;
+}
+
+
+/* style the services items */
+
+.services-item {
+    padding: 20px 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+
+/* style the icon in services item */
+
+.services-icon {
+    color: #5FC3E4;
+    float: left;
+    margin: 0 25px;
+    padding: 10px 15px 5px 0;
+    width: 100px;
+    height: 100px;
+}
+
+.services-item:hover .services-icon {
+    background-color: #5FC3E4;
+    color: #e9ecef;
+    border-radius: 15px;
+}
+
+.services-title h3 {
+    font-size: 30px;
+    font-weight: 400;
+    margin: 0 0 20px 0;
+}
+
+.services-desc p {
+    margin: 0;
+    padding: 10px 20px;
+    font-size: 22px;
+}
+
+
+/* ---------------style for about section --------------*/
+
+#about-containt-box {
+    height: 100%;
+    float: left;
+    margin-top: 30px;
+}
+
+#about-containt-box-outer {
+    display: inline;
+}
+
+#about-containt-box-inner {
+    display: table-cell;
+    vertical-align: auto;
+}
+
+.about-desc p {
+    margin: 25px 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.carousel-inner {
+    width: 600px;
+    height: 475px;
+    margin-top: 85px;
+}
+
+
+/*---------------style footer bar -------------*/
+
+#footer {
+    background: #212121;
+    border: 10px solid rgba(0, 0, 0, 0.1);
+    border-radius: 25px 25px 0 0;
+}
+
+.col ul {
+    display: inline;
+    color: #e9ecef;
+    font-weight: bold;
+    list-style-type: none;
+}
+
+.col ul li a {
+    text-decoration: none;
+    color: #e9ecef;
+    font-weight: lighter;
+}
+
+.content-wrapper {
+    min-height: calc(100vh - 56px);
+    padding-top: 1rem;
+}
+
+
+/* style for scroll btn (up to top-page)*/
+
+.scroll-to-top {
+    position: fixed;
+    right: 15px;
+    bottom: 3px;
+    display: none;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    color: white;
+    background: rgba(52, 58, 64, 0.5);
+    line-height: 45px;
+}
+
+.scroll-to-top:focus,
+.scroll-to-top:hover {
+    color: white;
+}
+
+.scroll-to-top:hover {
+    background: #343a40;
+}
+
+.scroll-to-top i {
+    font-weight: 800;
+}
+
+.smaller {
+    font-size: 0.7rem;
+}
+
+.o-hidden {
+    overflow: hidden !important;
+}
+
+.z-0 {
+    z-index: 0;
+}
+
+.z-1 {
+    z-index: 1;
+}
+
+
+/* style for card body icons*/
+
+.card-body-icon {
+    position: absolute;
+    z-index: 0;
+    top: -25px;
+    right: -25px;
+    font-size: 5rem;
+    -webkit-transform: rotate(15deg);
+    -ms-transform: rotate(15deg);
+    transform: rotate(15deg);
+}
+
+.card-login {
+    max-width: 25rem;
+}
+
+.card-register {
+    max-width: 40rem;
+}
+
+
+/* style for footer bar*/
+
+footer.sticky-footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 56px;
+    background-color: #e9ecef;
+    line-height: 55px;
+}
