@@ -8,13 +8,13 @@ router.post('/createPolicy', (req, res) => {
     let policy = new Policy({
         policyNo: req.body.policyNo,
         policyName: req.body.policyName,
-        revisiondate: req.body.revisiondate,
-        detalis: req.body.detalis
+        details: req.body.details,
+        user_id: req.user.id
     });
     policy.save((err) => {
         if (!err) {
             console.log('Policy was Created')
-            req.flash('info', 'Policy created successfuly')
+            req.flash('info', 'Policy created successfully')
             res.redirect('/dashboard/policy')
         } else {
             console.log(err)
@@ -27,14 +27,13 @@ router.post('/:id/updatePolicy', (req, res) => {
     let newfeilds = {
         policyNo: req.body.policyNo,
         policyName: req.body.policyName,
-        revisiondate: req.body.revisiondate,
-        detalis: req.body.detalis
+        details: req.body.details
     }
     Policy.updateOne({ _id: req.params.id }, newfeilds,
         (err) => {
             if (!err) {
                 console.log('Policy was Updated')
-                req.flash('info', 'Policy Updated successfuly')
+                req.flash('info', 'Policy Updated successfully')
                 res.redirect('/dashboard/policy')
             } else {
                 console.log(err)
@@ -48,7 +47,7 @@ router.post('/:id/deletePolicy', (req, res) => {
         (err) => {
             if (!err) {
                 console.log('Policy was Deleted')
-                req.flash('info', 'Policy Deleted successfuly')
+                req.flash('info', 'Policy Deleted successfully')
                 res.redirect('/dashboard/policy')
             } else {
                 console.log(err)

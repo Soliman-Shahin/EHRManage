@@ -13,10 +13,6 @@ let policySchema = new schema({
         required: true,
         max: 50
     },
-    revisionDate: {
-        type: Date,
-        required: true
-    },
     details: {
         type: String,
         required: true,
@@ -26,7 +22,7 @@ let policySchema = new schema({
         type: String,
         required: true
     }
-});
+}, { timestamps: true });
 
 
 module.exports = mongoose.model('Policy', policySchema, 'Policies');

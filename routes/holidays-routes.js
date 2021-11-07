@@ -6,11 +6,12 @@ const Holiday = require('../models/holidays.model');
 // create holiday
 router.post('/createHoliday', (req, res) => {
     let holiday = new Holiday({
-        empNo: req.body.empNo,
+        empId: req.body.empId,
         empFName: req.body.empFName,
         empLName: req.body.empLName,
         holiDate: req.body.holiDate,
-        remainingDays: req.body.remainingDays
+        remainingDays: req.body.remainingDays,
+        user_id: req.user.id
     });
     holiday.save((err) => {
         if (!err) {

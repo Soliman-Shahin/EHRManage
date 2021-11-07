@@ -7,19 +7,20 @@
                 <div class="row login">
                     <div class="col-md-7 offset-md-5">
                         <header>
-                            <div class="card" style="width: 210px; height: 210px; border:solid gray 10px; border-radius: 10px 10px 0 0;">
-                                <% company.forEach(function(company) { %>
+                            <% company.forEach(function(company) { %>
+                                <div class="card" style="width: 210px; height: 210px; border:solid gray 10px; border-radius: 10px 10px 0 0;">
                                     <img width="100%" height="100%" id="company-img" src="<%= '/logo/' + company.companyName + '.png'%>" class="card-img-top" alt="companyLogo">
-                                    <%})%>
-                            </div>
+                                    <% }) %>
+                                </div>
                         </header>
                     </div>
-                    <div class="col-md-3 offset-2">
-                        <a href="#" class="btn btn-outline-success" data-toggle="modal" data-target="#addPolicyModal">Create Policy</a>
+                    <div class="col-md-3 offset-2 mt-4 mb-2">
+                        <a href="#" class="btn btn-outline-success" data-toggle="modal" data-target="#addPolicyModal"><i class="fa fa-fw fa-plus-square-o"></i>Create Policy</a>
                     </div>
                 </div>
                 <% if (policies==''){ %>
                     <div class="col-md-8 offset-md-2">
+                        <hr>
                         <div class="col form-adding">
                             <section class="ftco-section bg-light ftco-bread">
                                 <div class="flex-nowrap">
@@ -38,7 +39,9 @@
                                     <section class="ftco-section bg-light ftco-bread">
                                         <div class=" flex-nowrap">
                                             <div class="alert alert-primary" role="alert">
-                                                <h3 style="float: left;"><span><%= policies.policyName %></span></h3>
+                                                <a href="#" data-target="#viewPolicyModal-<%= policies.id%>" data-toggle="modal" data-id="<%= policies.id%>">
+                                                    <h3 style="float: left;"><span><%= policies.policyName %></span></h3>
+                                                </a>
                                                 <div class="text-right">
                                                     <a href="#" class="btn btn-primary" data-target="#editPolicyModal-<%= policies.id%>" data-toggle="modal" data-id="<%= policies.id%>"><i class="fa fa-fw fa-edit"></i>Edit</a>
                                                     <a href="#" class="btn btn-danger" data-target="#delPolicyModal-<%= policies.id %>" data-toggle="modal"><i class="fa fa-fw fa-remove"></i>Delete</a>
@@ -47,6 +50,53 @@
                                         </div>
                                     </section>
                                     <% if (policies){ %>
+                                        <!-- View Policy Modal -->
+                                        <div class="modal fade" id="viewPolicyModal-<%= policies.id%>" tabindex="-1" role="dialog" aria-labelledby="viewPolicyModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content border-0">
+                                                    <div class="modal-header bg-dark text-success">
+                                                        <h5 class="modal-title" id="policyModalTitle">View Policy</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span class="text-light" aria-hidden="true">&times;</span>
+                                                                      </button>
+                                                    </div>
+                                                    <div class="modal-body bg-light">
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <div class="col col-md-6">
+                                                                    <img src="/img/logo.png" alt="companyLogo" width="50%" height="100%">
+                                                                </div>
+                                                                <div class="col col-md-6">
+                                                                    <h3>
+                                                                        <%= policies.policyName%>
+                                                                    </h3>
+                                                                </div>
+                                                                <div class="col col-md-12">
+                                                                    <hr>
+                                                                    <h5>
+                                                                        <%= policies.details%>
+                                                                    </h5>
+                                                                </div>
+                                                                <div class="col col-md-12">
+                                                                    <hr>
+                                                                    <p>
+                                                                        Created At:
+                                                                        <%= policies.createdAt.toLocaleDateString()%>
+                                                                    </p>
+                                                                    <p>
+                                                                        Last Update At:
+                                                                        <%= policies.updatedAt.toLocaleDateString()%>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer bg-dark justify-content-lg-start">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <!-- Edit Policy Modal -->
                                         <div class="modal fade" id="editPolicyModal-<%= policies.id%>" tabindex="-1" role="dialog" aria-labelledby="editPolicyModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
@@ -70,11 +120,17 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="inputrdate">Revision date</label>
-                                                                <input class="form-control bg-transparent border-top-0 border-right-0 bg-transparent border-top-0 border-right-0" type="date" id="revisiondate" name="revisiondate" value="<%= policies.revisiondate%>">
+                                                                <textarea class="form-control bg-transparent border-top-0 border-right-0 bg-transparent border-top-0 border-right-0" name="details" id="detalis" cols="30" rows="10"> <%= policies.details%></textarea>
                                                             </div>
                                                             <div class="form-group">
-                                                                <textarea class="form-control bg-transparent border-top-0 border-right-0 bg-transparent border-top-0 border-right-0" name="detalis" id="detalis" cols="30" rows="10"> <%= policies.detalis%></textarea>
+                                                                <p>
+                                                                    Created At:
+                                                                    <%= policies.createdAt.toLocaleDateString()%>
+                                                                </p>
+                                                                <p>
+                                                                    Last Update:
+                                                                    <%= policies.updatedAt.toLocaleDateString()%>
+                                                                </p>
                                                             </div>
                                                     </div>
                                                     <div class="modal-footer bg-dark justify-content-lg-start">
@@ -84,6 +140,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <!-- Delete Policy Modal -->
                                         <div class="modal fade top" id="delPolicyModal-<%= policies.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-full-height modal-top" role="document">
@@ -138,11 +195,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputrdate">Revision date</label>
-                                    <input class="form-control bg-transparent border-top-0 border-right-0 bg-transparent border-top-0 border-right-0" type="date" id="revisiondate" name="revisiondate" value="Revision Date">
-                                </div>
-                                <div class="form-group">
-                                    <textarea class="form-control bg-transparent border-top-0 border-right-0 bg-transparent border-top-0 border-right-0" name="detalis" id="detalis" cols="30" rows="10" placeholder="Detalis"></textarea>
+                                    <textarea class="form-control bg-transparent border-top-0 border-right-0 bg-transparent border-top-0 border-right-0" name="details" id="detalis" cols="30" rows="10" placeholder="Details"></textarea>
                                 </div>
                         </div>
                         <div class="modal-footer bg-dark justify-content-lg-start">

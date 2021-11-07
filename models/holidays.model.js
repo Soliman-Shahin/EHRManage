@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
 let holidaysSchema = new schema({
-    empNo: {
+    empId: {
         type: String,
         required: true,
         max: 5
@@ -22,6 +22,10 @@ let holidaysSchema = new schema({
         required: true
     },
     remainingDays: {
+        type: String,
+        required: true
+    },
+    user_id: {
         type: String,
         required: true
     }

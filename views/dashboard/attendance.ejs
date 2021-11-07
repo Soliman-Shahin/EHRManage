@@ -80,8 +80,6 @@
                                                             <thead>
                                                                 <tr>
                                                                     <th>ID</th>
-                                                                    <th>First Name</th>
-                                                                    <th>Last Name</th>
                                                                     <th>Attendance Time</th>
                                                                     <th>Departure Time</th>
                                                                     <th>Options</th>
@@ -91,13 +89,7 @@
                                                                 <tbody>
                                                                     <tr>
                                                                         <td>
-                                                                            <%= day.employee[i].empNo %>
-                                                                        </td>
-                                                                        <td>
-                                                                            <%= day.employee[i].empFName %>
-                                                                        </td>
-                                                                        <td>
-                                                                            <%= day.employee[i].empLName %>
+                                                                            <%= day.employee[i].empId %>
                                                                         </td>
                                                                         <td>
                                                                             <%= day.employee[i].attTime %>
@@ -106,7 +98,7 @@
                                                                             <%= day.employee[i].depTime %>
                                                                         </td>
                                                                         <td>
-                                                                            <form action="<%= '/company/'+ day.id +'/'+ day.employee[i].empNo +'/deleteAttendance'%>" method="POST">
+                                                                            <form action="<%= '/company/'+ day.id +'/'+ day.employee[i].empId +'/deleteAttendance'%>" method="POST">
                                                                                 <button type="submit" class="btn btn-danger"><i class="fa fa-fw fa-remove"></i></button>
                                                                             </form>
                                                                         </td>
@@ -147,8 +139,6 @@
                                         <tr>
                                             <th>Select Day</th>
                                             <th>Employee Id</th>
-                                            <th>First name</th>
-                                            <th>Last name</th>
                                             <th>Attendance Time</th>
                                             <th>Departure Time</th>
                                         </tr>
@@ -162,18 +152,8 @@
                                                         </select>
                                                 </td>
                                                 <td>
-                                                    <select name="empNo" id="empNo">
-                                                        <% emps.forEach(function(emps) { %> <option value="<%= emps.empNo%>"><%= emps.empNo%></option><% }); %>
-                                                       </select>
-                                                </td>
-                                                <td>
-                                                    <select name="empFName" id="empFName">
-                                                        <% emps.forEach(function(emps) { %> <option value="<%= emps.empFName%>"><%= emps.empFName%></option><% }); %>
-                                                       </select>
-                                                </td>
-                                                <td>
-                                                    <select name="empLName" id="empLName">
-                                                        <% emps.forEach(function(emps) { %> <option value="<%= emps.empLName%>"><%= emps.empLName%></option><% }); %>
+                                                    <select name="empId" id="empId">
+                                                        <% emps.forEach(function(emps) { %> <option value="<%= emps.id%>"><%= emps.id%></option><% }); %>
                                                        </select>
                                                 </td>
                                                 <td><input id="attTime" name="attTime" type="time"></td>

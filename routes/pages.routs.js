@@ -58,13 +58,13 @@ router.get('/dashboard/department', isAuthenticated, (req, res) => {
 router.get('/dashboard/employee', isAuthenticated, (req, res) => {
     let companyQuery = Company.find(null);
     companyQuery.where('user_id').equals(req.user.id)
-    let query = Employee.find(null);
-    query.where('user_id').equals(req.user.id)
-    let policyquery = Policy.find(null);
-    policyquery.where('user_id').equals(req.user.id)
+    let empQuery = Employee.find(null);
+    empQuery.where('user_id').equals(req.user.id)
+    let policyQuery = Policy.find(null);
+    policyQuery.where('user_id').equals(req.user.id)
     companyQuery.exec((err, company) => {
-        policyquery.exec((err, policies) => {
-            query.exec((err, emps) => {
+        policyQuery.exec((err, policies) => {
+            empQuery.exec((err, emps) => {
                 res.render('dashboard/employee', {
                     company: company,
                     emps: emps,
@@ -79,10 +79,12 @@ router.get('/dashboard/employee', isAuthenticated, (req, res) => {
 
 // policy page
 router.get('/dashboard/policy', isAuthenticated, (req, res) => {
-    let qurey = Policy.find(null);
+    let policyQuery = Policy.find(null);
+    policyQuery.where('user_id').equals(req.user.id)
     let companyQuery = Company.find(null);
+    companyQuery.where('user_id').equals(req.user.id)
     companyQuery.exec((err, company) => {
-        qurey.exec((err, policies) => {
+        policyQuery.exec((err, policies) => {
             res.render('dashboard/policy', {
                 company: company,
                 policies: policies,
@@ -93,14 +95,17 @@ router.get('/dashboard/policy', isAuthenticated, (req, res) => {
     })
 })
 
-// attendance page 
+// attendance page
 router.get('/dashboard/attendance', isAuthenticated, (req, res) => {
-    let dayquery = Attendance.find(null);
-    let query = Employee.find(null);
+    let dayQuery = Attendance.find(null);
+    dayQuery.where('user_id').equals(req.user.id)
+    let empQuery = Employee.find(null);
+    empQuery.where('user_id').equals(req.user.id)
     let companyQuery = Company.find(null);
+    companyQuery.where('user_id').equals(req.user.id)
     companyQuery.exec((err, company) => {
-        dayquery.exec((err, day) => {
-            query.exec((err, emps) => {
+        dayQuery.exec((err, day) => {
+            empQuery.exec((err, emps) => {
                 res.render('dashboard/attendance', {
                     company: company,
                     day: day,
@@ -113,14 +118,17 @@ router.get('/dashboard/attendance', isAuthenticated, (req, res) => {
     })
 })
 
-// holidays page 
+// holidays page
 router.get('/dashboard/holidays', isAuthenticated, (req, res) => {
-    let dayquery = Holiday.find(null);
-    let query = Employee.find(null);
+    let dayQuery = Holiday.find(null);
+    dayQuery.where('user_id').equals(req.user.id)
+    let empQuery = Employee.find(null);
+    empQuery.where('user_id').equals(req.user.id)
     let companyQuery = Company.find(null);
+    companyQuery.where('user_id').equals(req.user.id)
     companyQuery.exec((err, company) => {
-        dayquery.exec((err, holiday) => {
-            query.exec((err, emps) => {
+        dayQuery.exec((err, holiday) => {
+            empQuery.exec((err, emps) => {
                 res.render('dashboard/holidays', {
                     company: company,
                     holiday: holiday,

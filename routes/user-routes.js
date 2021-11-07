@@ -108,8 +108,8 @@ router.get('/auth/facebook', passport.authenticate('facebook', {
 // authentication has failed.
 router.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
-        successRedirect: '/',
-        failureRedirect: '/login'
+        successRedirect: '/users/profile',
+        failureRedirect: '/users/login'
     }), (req, res) => {
         res.redirect('/users/profile')
     });
@@ -127,7 +127,8 @@ router.get('/auth/google',
 // authentication has failed.
 router.get('/auth/google/callback',
     passport.authenticate('google', {
-        failureRedirect: '/login'
+        successRedirect: '/users/profile',
+        failureRedirect: '/users/login'
     }),
     function(req, res) {
         // Successful authentication, redirect home.

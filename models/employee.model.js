@@ -4,6 +4,10 @@ const autoIncrement = require("mongoose-auto-increment");
 const schema = mongoose.Schema;
 
 let employeeSchema = new schema({
+    _id: {
+        type: Number,
+        required: true
+    },
     empFName: {
         type: String,
         required: true,

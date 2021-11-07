@@ -6,7 +6,9 @@ const Attendance = require('../models/attendance.model');
 // create day
 router.post('/createDay', (req, res) => {
     let day = new Attendance({
-        day: req.body.day
+        day: req.body.day,
+        user_id: req.user.id
+
     });
     day.save((err) => {
         if (!err) {
@@ -38,9 +40,7 @@ router.post('/createAttendance', (req, res) => {
     Attendance.updateOne({ _id: req.body.attDay }, {
         $push: {
             employee: {
-                empNo: req.body.empNo,
-                empFName: req.body.empFName,
-                empLName: req.body.empLName,
+                empId: req.body.empId,
                 attTime: req.body.attTime,
                 depTime: req.body.depTime
             }
@@ -57,8 +57,8 @@ router.post('/createAttendance', (req, res) => {
 })
 
 // delete attendance
-router.post('/:id/:empNo/deleteAttendance', (req, res) => {
-    Attendance.updateOne({ _id: req.params.id }, { $pull: { employee: { empNo: req.params.empNo } } }, { multi: false },
+router.post('/:id/:empId/deleteAttendance', (req, res) => {
+    Attendance.updateOne({ _id: req.params.id }, { $pull: { employee: { empId: req.params.empId } } }, { multi: false },
         (err) => {
             if (!err) {
                 console.log('Attendance was Deleted')

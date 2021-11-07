@@ -8,20 +8,14 @@ let attendanceSchema = new schema({
         unique: true
     },
     employee: [{
-        empNo: {
+        _id: {
+            type: String,
+            required: true
+        },
+        empId: {
             type: String,
             required: true,
             max: 5
-        },
-        empFName: {
-            type: String,
-            required: true,
-            max: 50
-        },
-        empLName: {
-            type: String,
-            required: true,
-            max: 50
         },
         attTime: {
             type: String,
@@ -31,7 +25,11 @@ let attendanceSchema = new schema({
             type: String,
             required: true
         }
-    }]
+    }],
+    user_id: {
+        type: String,
+        required: true
+    }
 });
 
 

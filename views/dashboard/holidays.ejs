@@ -2,7 +2,7 @@
     <%- include('../dashboard/nav') -%>
 
         <% if (user) { %>
-            <!--Hoilydays-->
+            <!--Holydays-->
             <div class="container-fluid">
                 <div class="row login">
                     <div class="col-md-7 offset-md-5">
@@ -14,12 +14,13 @@
                             </div>
                         </header>
                     </div>
-                    <div class="col-md-3 ml-3 mb-2">
+                    <div class="col-md-3 offset-md-2 mt-4 mb-2">
                         <a href="#" class="btn btn-outline-success" data-toggle="modal" data-target="#addHolidayModal">Add Holiday</a>
                     </div>
                 </div>
                 <% if (holiday==''){ %>
                     <div class="col-md-8 offset-md-2">
+                        <hr>
                         <div class="col form-adding">
                             <section class="ftco-section bg-light ftco-bread">
                                 <div class="flex-nowrap">
@@ -32,10 +33,10 @@
                     </div>
                     <% } else{ %>
                         <div class="col-md-12">
-                            <!--  Holiydays Tables Card-->
+                            <!--  Holidays Tables Card-->
                             <div class="card mb-3">
                                 <div class="card-header">
-                                    <i class="fa fa-table"></i> Holiydays Table</div>
+                                    <i class="fa fa-table"></i> Holidays Table</div>
                                 <div class="card-body">
                                     <div class="table-responsive">
                                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -44,7 +45,7 @@
                                                     <th>Employee ID</th>
                                                     <th>First name</th>
                                                     <th>Last name</th>
-                                                    <th>Holiyday Date</th>
+                                                    <th>Holiday Date</th>
                                                     <th>Remaining Days</th>
                                                     <th>Options</th>
                                                 </tr>
@@ -53,7 +54,7 @@
                                                 <% holiday.forEach(function(holiday) { %>
                                                     <tr>
                                                         <td>
-                                                            <%= holiday.empNo %>
+                                                            <%= holiday.empId %>
                                                         </td>
                                                         <td>
                                                             <%= holiday.empFName %>
@@ -89,14 +90,14 @@
                                                                                                 <th>Employee ID</th>
                                                                                                 <th>First name</th>
                                                                                                 <th>Last name</th>
-                                                                                                <th>Holiyday Date</th>
+                                                                                                <th>Holiday Date</th>
                                                                                                 <th>Remaining Days</th>
                                                                                             </tr>
                                                                                         </thead>
                                                                                         <tbody>
                                                                                             <tr>
                                                                                                 <td>
-                                                                                                    <%= holiday.empNo %>
+                                                                                                    <%= holiday.empId %>
                                                                                                 </td>
                                                                                                 <td>
                                                                                                     <%= holiday.empFName %>
@@ -176,14 +177,14 @@
                                                     <th>Employee ID</th>
                                                     <th>First name</th>
                                                     <th>Last name</th>
-                                                    <th>Holiyday Date</th>
+                                                    <th>Holiday Date</th>
                                                     <th>Remaining Days</th>
                                                 </tr>
                                             </thead>
                                             <tr>
                                                 <td>
-                                                    <select name="empNo" id="empNo">
-                                                    <% emps.forEach(function(emps) { %> <option value="<%= emps.empNo%>"><%= emps.empNo%></option><% }); %>
+                                                    <select name="empId" id="empId">
+                                                    <% emps.forEach(function(emps) { %> <option value="<%= emps.id%>"><%= emps.id%></option><% }); %>
                                                    </select>
                                                 </td>
                                                 <td>
