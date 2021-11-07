@@ -9,7 +9,7 @@ router.post('/createEmployee', (req, res) => {
     if (req.files) {
         // file upload : imageFile is name of input
         // uploads folder name
-        req.files.imageFile.mv('uploads/employees/' + req.body.id + ".png",
+        req.files.imageFile.mv('uploads/employees/' + req.body.empEmail + ".png",
             (err) => {
                 if (err)
                     return res.status(500).send(err);
