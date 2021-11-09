@@ -1,10 +1,10 @@
 const express = require('express')
 const router = express.Router()
-const User = require('../models/user.model')
+const userController = require('../controller/user.controller')
 const passport = require('passport')
 const multer = require("multer")
 
-// configure multer 
+// configure multer
 var storage = multer.diskStorage({
     destination: function(req, file, cb) {
         cb(null, 'uploads/images')
@@ -21,30 +21,20 @@ isAuthenticated = (req, res, next) => {
     res.redirect('/users/login')
 }
 
-// login user view 
-router.get('/login', (req, res) => {
-    res.render('user/login', {
-        error: req.flash('error'),
-        title: 'EHRManage | Login Page'
-    })
-})
+// login user view
+router.get('/login', userController.login);
 
-// login post request 
+// login post request
 router.post('/login',
     passport.authenticate('local.login', {
         successRedirect: '/users/profile',
         failureRedirect: '/users/login',
         failureFlash: true
     })
-)
+);
 
 // sign up form 
-router.get('/signup', (req, res) => {
-    res.render('user/signup', {
-        error: req.flash('error'),
-        title: 'EHRManage | Signup Page'
-    })
-})
+router.get('/signup', userController.signUp);
 
 // sign up post request
 router.post('/signup',
@@ -55,44 +45,14 @@ router.post('/signup',
     })
 )
 
-// profile 
-router.get('/profile', isAuthenticated, (req, res) => {
-    res.render('user/profile', {
-        success: req.flash('success'),
-        title: 'EHRManage | Profile Page'
-    })
-})
-
+// profile
+router.get('/profile', isAuthenticated, userController.userProfile);
 //upload user avatar
-router.post('/uploadAvatar', upload.single('avatar'), (req, res) => {
-    let newFields = {
-        avatar: req.file.filename
-    }
-    User.updateOne({ _id: req.user._id }, newFields, (err) => {
-        if (!err) {
-            res.redirect('/users/profile')
-        }
-    })
-})
-
+router.post('/uploadAvatar', upload.single('avatar'), userController.uploadAvatar);
 // delete user
-router.post('/:id/deleteUser', (req, res) => {
-    User.deleteOne({ _id: req.params.id }, (err) => {
-        if (!err) {
-            console.log('User was Deleted')
-            req.flash('info', 'User Deleted successfully')
-            res.redirect('/home')
-        } else {
-            console.log(err)
-        }
-    })
-})
-
+router.post('/:id/deleteUser', userController.deleteUser);
 // logout user
-router.get('/logout', (req, res) => {
-    req.logout();
-    res.redirect('/users/login');
-})
+router.get('/logout', userController.logout);
 
 
 // Redirect the user to Facebook for authentication.  When complete,
